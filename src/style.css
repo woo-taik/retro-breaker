@@ -1,0 +1,36 @@
+:root { font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #eef4ff; background: #08101f; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body { margin: 0; min-width: 320px; min-height: 100vh; background: #08101f; }
+button { font: inherit; }
+#app { width: 100%; min-height: 100vh; padding: 20px 16px 28px; }
+.game-shell { width: min(100%, 460px, calc((100dvh - 170px - var(--safe-top, 0px) - var(--safe-bottom, 0px)) * 0.643)); min-width: min(270px, 100%); margin: 0 auto; }
+.game-header { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2px 12px; margin: 4px 4px 16px; }
+.game-kicker { grid-column: 1; margin: 0; color: #7da5f5; font-size: 11px; font-weight: 800; letter-spacing: .13em; }
+h1 { grid-column: 1; margin: 0; font-size: 24px; letter-spacing: -.04em; }
+.sound-button { grid-column: 2; grid-row: 1 / span 2; padding: 9px 11px; color: #c4d4f5; border: 1px solid #31415f; border-radius: 10px; background: #15213a; font-size: 12px; font-weight: 700; }
+.game-frame { position: relative; overflow: hidden; border: 2px solid #30476f; border-radius: 18px; background: #10182a; touch-action: none; }
+canvas { display: block; width: 100%; height: auto; aspect-ratio: 9 / 14; touch-action: none; }
+.game-overlay { position: absolute; inset: 0; display: none; place-content: center; justify-items: center; gap: 10px; padding: 28px; text-align: center; background: rgba(7, 13, 28, .84); }
+.game-overlay[data-state="ready"], .game-overlay.is-visible { display: grid; }
+.overlay-kicker { margin: 0; color: #9ebdff; font-size: 13px; font-weight: 800; }
+.game-overlay strong { font-size: 28px; letter-spacing: -.05em; }
+.game-overlay span { color: #c3cfe8; font-size: 14px; }
+.start-button { margin-top: 12px; min-width: 180px; padding: 15px 20px; color: #071225; border: 0; border-radius: 13px; background: #99b6ff; font-size: 16px; font-weight: 850; }
+.start-button:active, .sound-button:active { transform: scale(.97); }
+.game-guide { display: flex; justify-content: space-between; padding: 14px 4px 0; color: #8295b7; font-size: 12px; }
+@media (min-width: 481px) { #app { padding-top: 28px; } }
+.controls { grid-column: 1 / -1; grid-row: 3; display: flex; gap: 6px; margin-top: 8px; }
+.controls button, .rank-button { padding: 10px; border: 1px solid #31415f; border-radius: 10px; color: #c4d4f5; background: #15213a; font-size: 11px; cursor: pointer; }
+button:disabled { opacity: .45; cursor: default; }
+button:focus-visible, canvas:focus-visible { outline: 2px solid #fada74; outline-offset: 2px; }
+.rank-button { min-width: 180px; font-size: 14px; padding: 12px; }
+#notice { color: #9caccc; text-align: center; font-size: 12px; min-height: 18px; margin: 8px 0 0; }
+#app { padding-top: max(12px, env(safe-area-inset-top), var(--safe-top, 0px)); padding-bottom: max(12px, env(safe-area-inset-bottom), var(--safe-bottom, 0px)); padding-left: max(16px, env(safe-area-inset-left), var(--safe-left, 0px)); padding-right: max(16px, env(safe-area-inset-right), var(--safe-right, 0px)); }
+h1 { font-size: 22px; }
+.game-overlay span { line-height: 1.7; }
+@media (max-width: 360px) { .game-header { gap: 2px 4px; } h1 { font-size: 20px; } .controls button { padding: 9px 6px; } }
+#exit-dialog { max-width: min(360px, 90vw); padding: 24px; border: 1px solid #405677; border-radius: 16px; background: #10182a; color: #eef4ff; }
+#exit-dialog::backdrop { background: rgb(0 0 0 / .65); }
+#exit-dialog h2 { margin-top: 0; font-size: 20px; }
+#exit-dialog p { color: #b6c6e2; line-height: 1.6; font-size: 14px; }
+#exit-dialog button { padding: 12px; margin: 4px; border: 1px solid #405677; border-radius: 8px; background: #223454; color: #eef4ff; cursor: pointer; }

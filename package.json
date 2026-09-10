@@ -1,0 +1,21 @@
+{
+  "name": "retro-breaker",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "test": "node --test tests/*.test.mjs",
+    "build": "tsc && vite build && ait build",
+    "preview": "vite preview",
+    "deploy": "ait deploy"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.2",
+    "vite": "^8.2.2",
+    "@apps-in-toss/devtools": "^3.2.0"
+  },
+  "dependencies": {
+    "@apps-in-toss/web-framework": "3.2.0"
+  }
+}
