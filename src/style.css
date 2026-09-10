@@ -34,3 +34,12 @@ h1 { font-size: 22px; }
 #exit-dialog h2 { margin-top: 0; font-size: 20px; }
 #exit-dialog p { color: #b6c6e2; line-height: 1.6; font-size: 14px; }
 #exit-dialog button { padding: 12px; margin: 4px; border: 1px solid #405677; border-radius: 8px; background: #223454; color: #eef4ff; cursor: pointer; }
+
+/* The game surface occupies the available Toss WebView while a run is active. */
+@media (max-width: 480px) {
+  .in-game #app { display: grid; min-height: 100dvh; padding: var(--safe-top, 0px) var(--safe-right, 0px) var(--safe-bottom, 0px) var(--safe-left, 0px); }
+  .in-game .game-shell { display: grid; width: min(100vw, calc((100dvh - var(--safe-top, 0px) - var(--safe-bottom, 0px)) * .643)); min-width: 0; margin: auto; }
+  .in-game .game-header, .in-game .game-guide, .in-game #notice { display: none; }
+  .in-game .game-frame { border-radius: 0; }
+  .in-game canvas { height: calc((100dvh - var(--safe-top, 0px) - var(--safe-bottom, 0px))); width: 100%; }
+}

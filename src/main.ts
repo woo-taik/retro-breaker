@@ -37,6 +37,10 @@ const exitDialog = element<HTMLDialogElement>('#exit-dialog');
 const rewarded = createRewardedAd();
 const keys = new Set<string>();
 
+function setGameSurface(active: boolean) {
+  document.documentElement.classList.toggle('in-game', active);
+}
+
 function tone(frequency: number, duration = .07) {
   if (!sound || document.hidden || !audio || audio.state !== 'running') return;
   const oscillator = audio.createOscillator(), gain = audio.createGain();
@@ -111,6 +115,7 @@ function result() {
   finalizedRun = run; completed++;
   track('game_end', { run_id: runId, score: game.score, seconds: Math.round(60 - game.remaining), continued: game.continued, reason: game.reason });
   pauseButton.disabled = true;
+  setGameSurface(true);
   const isBest = game.score > best;
   best = Math.max(best, game.score); updateBest(); persist();
   showOverlay(isBest ? '최고기록 갱신!' : game.reason, game.score.toLocaleString() + '점',
@@ -174,6 +179,7 @@ function start() {
   runId = crypto.randomUUID(); offerShown = false;
   track('game_start', { run_id: runId, first_run: completed === 0 });
   rewarded?.prepare();
+  setGameSurface(true);
   overlay.classList.remove('is-visible'); pauseButton.disabled = false;
   unlockAudio(); canvas.focus({ preventScroll: true }); last = performance.now(); draw();
   frame = requestAnimationFrame(animate);
@@ -200,6 +206,7 @@ function askExit() {
   exitDialog.showModal();
 }
 function showHome() {
+  setGameSurface(false);
   showOverlay('작은 오락실, 한 판의 여유', '60초 벽돌깨기', '생명 3개 · 5콤보마다 배율 UP · 10콤보 피버', '게임 시작', start);
 }
 element<HTMLButtonElement>('#exit').onclick = askExit;
